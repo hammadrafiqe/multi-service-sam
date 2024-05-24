@@ -12,3 +12,10 @@ Resources:
     Type: AWS::Serverless::Application
     Properties:
       Location: src/services/order/template.yaml
+Outputs:
+  ProductServiceOutput:
+    Description: "Product Service API"
+    Value: !GetAtt ProductService.Outputs.ProductApi
+  OrderServiceOutput:
+    Description: "Order Service API"
+    Value: !GetAtt OrderService.Outputs.OrderApi

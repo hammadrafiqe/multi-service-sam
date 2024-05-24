@@ -8,7 +8,11 @@ Description: >
 Globals:
   Function:
     Timeout: 3
-
+    Runtime: nodejs18.x
+    Layers:
+      - !Ref Utils
+    Architectures:
+      - x86_64
 Resources:
   Utils:
     Type: AWS::Serverless::LayerVersion
@@ -22,13 +26,8 @@ Resources:
     Properties:
       CodeUri: routes/
       Handler: app.lambdaHandler
-      Runtime: nodejs18.x
-      Layers:
-        - !Ref Utils
-      Architectures:
-        - x86_64
       Events:
-        HelloWorld:
+        GetProduct:
           Type: Api
           Properties:
             Path: /product
@@ -39,13 +38,8 @@ Resources:
     Properties:
       CodeUri: routes/
       Handler: app.lambdaHandler
-      Runtime: nodejs18.x
-      Layers:
-        - !Ref Utils
-      Architectures:
-        - x86_64
       Events:
-        HelloWorld:
+        CreateProduct:
           Type: Api
           Properties:
             Path: /product
@@ -54,7 +48,7 @@ Resources:
 Outputs:
   ProductApi:
     Description: "API Gateway endpoint URL for Prod stage for Product function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/product/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   GetProductFunction:
     Description: "Get Product Lambda Function ARN"
     Value: !GetAtt GetProductFunction.Arn

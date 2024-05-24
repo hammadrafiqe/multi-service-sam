@@ -9,6 +9,11 @@ Description: >
 Globals:
   Function:
     Timeout: 3
+    Runtime: nodejs18.x
+    Layers:
+      - !Ref Utils
+    Architectures:
+      - x86_64
 
 Resources:
   Utils:
@@ -23,13 +28,8 @@ Resources:
     Properties:
       CodeUri: routes/
       Handler: app.lambdaHandler
-      Runtime: nodejs18.x
-      Layers:
-        - !Ref Utils
-      Architectures:
-        - x86_64
       Events:
-        HelloWorld:
+        GetOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /order
@@ -41,7 +41,7 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   OrderApi:
     Description: "API Gateway endpoint URL for Prod stage for Get Order function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/order/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   GetOrderFunction:
     Description: "Get Order Lambda Function ARN"
     Value: !GetAtt GetOrderFunction.Arn
