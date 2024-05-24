@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  multi service SAM
+Resources:
+  ProductService:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: src/services/product/template.yaml
+  OrderService:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: src/services/order/template.yaml
