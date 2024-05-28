@@ -12,9 +12,11 @@
  */
 
 const { test } = require("shared");
+const { handler } = require("lambdaHandler");
 
 const lambdaHandler = async (event, context) => {
   test("order service");
+  handler("order service");
   try {
     return {
       statusCode: 200,

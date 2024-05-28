@@ -19,7 +19,7 @@ Resources:
     Properties:
       CompatibleRuntimes:
         - nodejs18.x
-      ContentUri: ../../layers
+      ContentUri: ../../utils-layer
 
   GetProductFunction:
     Type: AWS::Serverless::Function
